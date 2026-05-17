@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Glow & Shine Beauty Parlour – Where Beauty Meets Perfection</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;
+  --gold-light:#E8C97A;
+  --blush:#F4A7B9;
+  --blush-light:#FDE8EF;
+  --rose:#D4547E;
+  --cream:#FFF8F0;
+  --lavender:#EDE0F8;
+  --nude:#F5E6D8;
+  --dark:#1A0A10;
+  --text:#3D2035;
+  --muted:#8C6A7A;
+  --white:#FFFFFF;
+  --card-glass:rgba(255,255,255,0.65);
+  --font-heading:'Playfair Display',serif;
+  --font-sub:'Cormorant Garamond',serif;
+  --font-body:'Nunito',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--cream);color:var(--text);overflow-x:hidden}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--blush-light)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:99px}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:0.4;
+}
+
+/* ══════════ NAV ══════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 4vw;height:72px;
+  background:rgba(255,248,240,0.7);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(201,168,76,0.15);
+  transition:all 0.4s ease;
+}
+nav.scrolled{background:rgba(255,248,240,0.92);box-shadow:0 4px 32px rgba(212,84,126,0.08)}
+.nav-logo{
+  font-family:var(--font-heading);font-size:1.45rem;
+  color:var(--dark);text-decoration:none;letter-spacing:-0.02em;
+  display:flex;align-items:center;gap:8px;
+}
+.nav-logo span{color:var(--gold)}
+.nav-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;display:inline-block}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{
+  font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;font-weight:600;
+  transition:color 0.3s;position:relative;padding-bottom:2px;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
+  background:var(--gold);transition:width 0.3s ease;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-book{
+  background:linear-gradient(135deg,var(--rose),#B83568);
+  color:white!important;padding:10px 22px!important;border-radius:99px;
+  font-size:0.78rem!important;letter-spacing:0.1em!important;
+  transition:transform 0.3s,box-shadow 0.3s!important;
+  box-shadow:0 4px 20px rgba(212,84,126,0.35);
+}
+.nav-book::after{display:none!important}
+.nav-book:hover{transform:translateY(-2px)!important;box-shadow:0 8px 28px rgba(212,84,126,0.45)!important;color:white!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all 0.3s}
+.mobile-menu{
+  display:none;position:fixed;inset:72px 0 0;
+  background:rgba(255,248,240,0.97);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+  z-index:999;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--font-heading);font-size:1.5rem;color:var(--text);text-decoration:none}
+.mobile-menu a:hover{color:var(--gold)}
+
+/* ══════════ HERO ══════════ */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  overflow:hidden;padding:0 6vw;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,#1A0A10 0%,#3D1030 40%,#6B2050 70%,#9B3060 100%);
+  z-index:0;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 80% at 70% 50%,rgba(201,168,76,0.12) 0%,transparent 60%),
+             radial-gradient(ellipse 50% 50% at 30% 80%,rgba(244,167,185,0.15) 0%,transparent 50%);
+}
+.hero-orb{
+  position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;
+}
+.orb1{width:500px;height:500px;background:rgba(212,84,126,0.2);right:-100px;top:-100px;animation:float1 8s ease-in-out infinite}
+.orb2{width:350px;height:350px;background:rgba(201,168,76,0.15);left:10%;bottom:10%;animation:float2 10s ease-in-out infinite}
+.orb3{width:200px;height:200px;background:rgba(180,80,200,0.15);left:40%;top:20%;animation:float1 6s ease-in-out infinite reverse}
+@keyframes float1{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+@keyframes float2{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(25px) scale(0.95)}}
+
+.hero-content{position:relative;z-index:2;max-width:680px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.35);
+  color:var(--gold-light);padding:7px 18px;border-radius:99px;
+  font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;
+  margin-bottom:1.5rem;
+  animation:fadeUp 0.8s ease both;
+}
+.hero-badge::before{content:'✦';font-size:0.6rem}
+.hero-h1{
+  font-family:var(--font-heading);
+  font-size:clamp(3rem,7vw,5.5rem);
+  color:white;line-height:1.05;letter-spacing:-0.02em;
+  margin-bottom:1.2rem;
+  animation:fadeUp 0.8s 0.15s ease both;
+}
+.hero-h1 em{color:var(--gold-light);font-style:italic}
+.hero-sub{
+  font-family:var(--font-sub);font-size:clamp(1rem,2vw,1.25rem);
+  color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:2.5rem;font-weight:300;
+  animation:fadeUp 0.8s 0.3s ease both;
+}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.8s 0.45s ease both}
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold),#A8782E);
+  color:var(--dark);padding:15px 32px;border-radius:99px;border:none;cursor:pointer;
+  font-family:var(--font-body);font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.35s ease;box-shadow:0 6px 28px rgba(201,168,76,0.4);
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(201,168,76,0.55)}
+.btn-outline{
+  background:transparent;color:white;padding:14px 32px;border-radius:99px;
+  border:1px solid rgba(255,255,255,0.35);cursor:pointer;
+  font-family:var(--font-body);font-size:0.82rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.35s ease;backdrop-filter:blur(8px);
+}
+.btn-outline:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.6);transform:translateY(-2px)}
+.hero-scroll{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;
+  animation:fadeUp 1s 0.8s ease both;
+}
+.hero-scroll span{font-size:0.7rem;letter-spacing:0.2em;color:rgba(255,255,255,0.4);text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),transparent);animation:scrollAnim 2s ease-in-out infinite}
+@keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ══════════ SECTION COMMON ══════════ */
+section{position:relative;z-index:1}
+.section-label{
+  display:inline-block;
+  font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);
+  font-weight:700;margin-bottom:0.75rem;
+}
+.section-label::before,.section-label::after{content:'— ';opacity:0.5}
+.section-title{
+  font-family:var(--font-heading);font-size:clamp(2rem,4vw,3rem);
+  color:var(--dark);line-height:1.15;margin-bottom:1rem;
+}
+.section-title em{color:var(--rose);font-style:italic}
+.section-sub{
+  font-family:var(--font-sub);font-size:1.1rem;color:var(--muted);
+  line-height:1.7;max-width:540px;font-weight:300;
+}
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ══════════ SERVICES ══════════ */
+.services{padding:110px 6vw;background:white}
+.services-header{text-align:center;margin-bottom:70px}
+.services-header .section-sub{margin:0 auto}
+.services-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;
+}
+.service-card{
+  background:var(--cream);border-radius:24px;overflow:hidden;
+  border:1px solid rgba(201,168,76,0.15);
+  transition:all 0.4s ease;cursor:pointer;position:relative;
+}
+.service-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(212,84,126,0.15);border-color:rgba(201,168,76,0.4)}
+.service-img-wrap{height:200px;overflow:hidden;position:relative}
+.service-img-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(26,10,16,0.6) 0%,transparent 60%);
+}
+.service-img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease}
+.service-card:hover .service-img{transform:scale(1.08)}
+.service-icon-wrap{
+  position:absolute;top:1rem;right:1rem;z-index:2;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;
+}
+.service-body{padding:1.5rem}
+.service-name{
+  font-family:var(--font-heading);font-size:1.2rem;color:var(--dark);
+  margin-bottom:0.5rem;
+}
+.service-desc{font-size:0.85rem;color:var(--muted);line-height:1.65;margin-bottom:1rem}
+.service-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{
+  font-size:0.7rem;padding:3px 10px;border-radius:99px;
+  background:var(--blush-light);color:var(--rose);font-weight:600;letter-spacing:0.05em;
+}
+
+/* ══════════ STATS STRIP ══════════ */
+.stats-strip{
+  background:linear-gradient(135deg,#1A0A10,#3D1030,#6B2050);
+  padding:60px 6vw;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2rem;text-align:center;
+}
+.stat-num{
+  font-family:var(--font-heading);font-size:2.8rem;color:var(--gold-light);
+  display:block;line-height:1;
+}
+.stat-label{font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:6px}
+
+/* ══════════ PRICING ══════════ */
+.pricing{padding:110px 6vw;background:var(--nude)}
+.pricing-header{text-align:center;margin-bottom:70px}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.price-card{
+  background:white;border-radius:24px;padding:2.5rem;
+  border:1px solid rgba(201,168,76,0.15);
+  transition:all 0.4s ease;position:relative;overflow:hidden;
+}
+.price-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--blush),var(--rose));
+}
+.price-card.featured{
+  background:linear-gradient(160deg,#1A0A10,#4D1540);
+  border-color:var(--gold);
+  transform:scale(1.03);
+  box-shadow:0 32px 80px rgba(26,10,16,0.35);
+}
+.price-card.featured::before{background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.price-badge{
+  position:absolute;top:1rem;right:1rem;
+  background:linear-gradient(135deg,var(--gold),#A8782E);
+  color:var(--dark);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+  padding:5px 12px;border-radius:99px;
+}
+.price-tier{
+  font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;margin-bottom:0.75rem;
+}
+.price-card.featured .price-tier{color:rgba(201,168,76,0.7)}
+.price-name{font-family:var(--font-heading);font-size:1.5rem;color:var(--dark);margin-bottom:1.5rem}
+.price-card.featured .price-name{color:white}
+.price-amount{
+  display:flex;align-items:flex-end;gap:4px;margin-bottom:1.5rem;
+}
+.price-currency{font-size:1.2rem;color:var(--gold);font-weight:600;align-self:flex-start;margin-top:6px}
+.price-val{font-family:var(--font-heading);font-size:3.2rem;color:var(--dark);line-height:1}
+.price-card.featured .price-val{color:var(--gold-light)}
+.price-period{font-size:0.85rem;color:var(--muted);margin-bottom:4px}
+.price-card.featured .price-period{color:rgba(255,255,255,0.4)}
+.price-divider{height:1px;background:rgba(201,168,76,0.15);margin-bottom:1.5rem}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:2rem}
+.price-features li{display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--muted)}
+.price-card.featured .price-features li{color:rgba(255,255,255,0.65)}
+.price-features li::before{content:'✦';color:var(--gold);font-size:0.55rem;flex-shrink:0}
+.btn-book{
+  width:100%;padding:14px;border-radius:99px;border:1px solid rgba(212,84,126,0.4);
+  background:transparent;color:var(--rose);font-family:var(--font-body);font-size:0.8rem;
+  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;
+  transition:all 0.3s ease;
+}
+.btn-book:hover{background:var(--rose);color:white;border-color:var(--rose)}
+.price-card.featured .btn-book{
+  background:linear-gradient(135deg,var(--gold),#A8782E);
+  border-color:transparent;color:var(--dark);
+}
+.price-card.featured .btn-book:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.45)}
+.price-card:hover:not(.featured){transform:translateY(-6px);box-shadow:0 20px 50px rgba(212,84,126,0.12)}
+
+/* ══════════ GALLERY ══════════ */
+.gallery{padding:110px 6vw;background:white}
+.gallery-header{text-align:center;margin-bottom:70px}
+.gallery-grid{
+  columns:3;column-gap:16px;
+}
+.gallery-item{
+  break-inside:avoid;margin-bottom:16px;border-radius:16px;overflow:hidden;
+  position:relative;cursor:pointer;display:block;
+}
+.gallery-item img{width:100%;display:block;transition:transform 0.5s ease}
+.gallery-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(26,10,16,0.75) 0%,transparent 50%);
+  opacity:0;transition:opacity 0.4s ease;
+  display:flex;align-items:flex-end;padding:1.2rem;
+}
+.gallery-overlay span{
+  font-family:var(--font-heading);font-size:1rem;color:white;font-style:italic;
+}
+.gallery-item:hover img{transform:scale(1.07)}
+.gallery-item:hover .gallery-overlay{opacity:1}
+
+/* ══════════ TESTIMONIALS ══════════ */
+.testimonials{padding:110px 6vw;background:var(--lavender)}
+.testimonials-header{text-align:center;margin-bottom:70px}
+.testi-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;scrollbar-width:none}
+.testi-track::-webkit-scrollbar{display:none}
+.testi-card{
+  min-width:340px;background:white;border-radius:24px;padding:2rem;
+  scroll-snap-align:start;border:1px solid rgba(201,168,76,0.15);
+  position:relative;flex-shrink:0;
+}
+.testi-card::before{
+  content:'\201C';position:absolute;top:-10px;left:1.5rem;
+  font-family:var(--font-heading);font-size:5rem;color:var(--blush);line-height:1;
+}
+.testi-stars{display:flex;gap:3px;margin-bottom:1rem}
+.star{color:var(--gold);font-size:0.85rem}
+.testi-text{
+  font-family:var(--font-sub);font-size:1.05rem;color:var(--muted);
+  line-height:1.7;font-style:italic;margin-bottom:1.5rem;padding-top:0.5rem;
+}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{
+  width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blush),var(--rose));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-heading);font-size:1rem;color:white;flex-shrink:0;
+}
+.testi-name{font-weight:700;font-size:0.9rem;color:var(--dark)}
+.testi-service{font-size:0.78rem;color:var(--gold);font-weight:600;letter-spacing:0.08em}
+.testi-nav{display:flex;justify-content:center;gap:10px;margin-top:2rem}
+.testi-dot{
+  width:28px;height:6px;border-radius:3px;cursor:pointer;
+  background:rgba(201,168,76,0.25);border:none;transition:all 0.3s;
+}
+.testi-dot.active{background:var(--gold);width:44px}
+
+/* ══════════ BOOKING ══════════ */
+.booking{
+  padding:110px 6vw;
+  background:linear-gradient(150deg,#1A0A10 0%,#3D1030 50%,#6B2050 100%);
+  position:relative;overflow:hidden;
+}
+.booking::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,0.1) 0%,transparent 70%);
+  right:-150px;top:-150px;
+}
+.booking-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+  max-width:1100px;margin:0 auto;position:relative;z-index:1;
+}
+.booking-left .section-title{color:white}
+.booking-left .section-sub{color:rgba(255,255,255,0.55)}
+.booking-left .section-label{color:var(--gold-light)}
+.booking-perks{margin-top:2rem;display:flex;flex-direction:column;gap:1rem}
+.perk{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.7);font-size:0.9rem}
+.perk-icon{
+  width:36px;height:36px;border-radius:10px;
+  background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.25);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+}
+.booking-form{
+  background:rgba(255,255,255,0.07);backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.12);border-radius:28px;padding:2.5rem;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.form-group label{font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600}
+.form-group input,.form-group select,.form-group textarea{
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  border-radius:12px;padding:13px 16px;color:white;font-family:var(--font-body);font-size:0.9rem;
+  outline:none;transition:all 0.3s ease;
+}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.3)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:rgba(201,168,76,0.5);background:rgba(255,255,255,0.12);
+  box-shadow:0 0 0 3px rgba(201,168,76,0.1);
+}
+.form-group select{color:rgba(255,255,255,0.6);cursor:pointer}
+.form-group select option{background:#3D1030;color:white}
+.form-group textarea{resize:none;min-height:90px}
+.btn-submit{
+  width:100%;padding:16px;border:none;border-radius:99px;cursor:pointer;
+  background:linear-gradient(135deg,var(--gold),#A8782E);
+  color:var(--dark);font-family:var(--font-body);font-size:0.85rem;
+  font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+  transition:all 0.35s ease;box-shadow:0 6px 28px rgba(201,168,76,0.3);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-submit:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(201,168,76,0.5)}
+
+/* ══════════ ACADEMY ══════════ */
+.academy{padding:110px 6vw;background:var(--cream)}
+.academy-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto;
+}
+.academy-img-collage{position:relative;height:500px}
+.collage-main{
+  position:absolute;right:0;top:0;width:70%;height:75%;
+  border-radius:24px;overflow:hidden;box-shadow:0 24px 60px rgba(26,10,16,0.2);
+}
+.collage-secondary{
+  position:absolute;left:0;bottom:0;width:50%;height:55%;
+  border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(26,10,16,0.2);
+  border:4px solid white;
+}
+.collage-main img,.collage-secondary img{width:100%;height:100%;object-fit:cover}
+.collage-badge{
+  position:absolute;right:8%;bottom:30%;z-index:3;
+  background:linear-gradient(135deg,var(--gold),#A8782E);
+  color:var(--dark);border-radius:16px;padding:1rem 1.3rem;
+  box-shadow:0 12px 36px rgba(201,168,76,0.45);
+  text-align:center;min-width:120px;
+}
+.collage-badge strong{display:block;font-family:var(--font-heading);font-size:2rem;line-height:1}
+.collage-badge small{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;opacity:0.8}
+.course-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1.5rem 0}
+.course-item{
+  display:flex;align-items:center;gap:8px;
+  background:white;border:1px solid rgba(201,168,76,0.15);
+  border-radius:10px;padding:10px 12px;font-size:0.82rem;color:var(--text);
+}
+.course-item::before{content:'✦';color:var(--gold);font-size:0.55rem}
+
+/* ══════════ FOOTER ══════════ */
+footer{
+  background:#0F0608;color:rgba(255,255,255,0.55);
+}
+.footer-top{
+  padding:80px 6vw 60px;
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;
+}
+.footer-brand p{font-size:0.88rem;line-height:1.7;margin-top:1rem;margin-bottom:1.5rem}
+.footer-logo{
+  font-family:var(--font-heading);font-size:1.4rem;color:white;
+  display:flex;align-items:center;gap:8px;text-decoration:none;
+}
+.footer-logo span{color:var(--gold)}
+.social-links{display:flex;gap:10px}
+.social-btn{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.12);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.5);font-size:0.9rem;text-decoration:none;
+  transition:all 0.3s;
+}
+.social-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
+.footer-col h4{
+  font-family:var(--font-heading);font-size:0.95rem;color:white;
+  margin-bottom:1.2rem;letter-spacing:0.05em;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
+.footer-col ul li a{
+  color:rgba(255,255,255,0.45);font-size:0.85rem;text-decoration:none;
+  transition:color 0.3s;display:flex;align-items:center;gap:6px;
+}
+.footer-col ul li a:hover{color:var(--gold)}
+.hours-row{display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.4rem;gap:1rem}
+.hours-row span:last-child{color:var(--gold-light)}
+.newsletter{margin-top:1rem;display:flex;gap:8px}
+.newsletter input{
+  flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  border-radius:99px;padding:10px 16px;color:white;font-family:var(--font-body);font-size:0.82rem;outline:none;
+}
+.newsletter input::placeholder{color:rgba(255,255,255,0.3)}
+.newsletter button{
+  background:var(--gold);border:none;border-radius:99px;padding:10px 16px;
+  color:var(--dark);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;
+  transition:all 0.3s;white-space:nowrap;
+}
+.newsletter button:hover{background:var(--gold-light)}
+.footer-bottom{
+  padding:20px 6vw;border-top:1px solid rgba(255,255,255,0.07);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:0.78rem;flex-wrap:wrap;gap:0.5rem;
+}
+.footer-bottom a{color:rgba(255,255,255,0.3);text-decoration:none}
+.footer-bottom a:hover{color:var(--gold)}
+
+/* ══════════ FLOATING BUTTONS ══════════ */
+.floating-wa{
+  position:fixed;bottom:2rem;right:2rem;z-index:999;
+  width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 24px rgba(37,211,102,0.4);
+  cursor:pointer;text-decoration:none;
+  animation:pulse 3s ease infinite;
+}
+.floating-wa svg{width:28px;height:28px;fill:white}
+@keyframes pulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,0.4)}50%{box-shadow:0 6px 40px rgba(37,211,102,0.65),0 0 0 8px rgba(37,211,102,0.1)}}
+
+/* ══════════ MODAL ══════════ */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:2000;
+  background:rgba(26,10,16,0.7);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:2rem;
+}
+.modal-overlay.open{display:flex}
+.modal-box{
+  background:white;border-radius:28px;padding:3rem;max-width:480px;width:100%;
+  text-align:center;animation:modalIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes modalIn{from{transform:scale(0.8) translateY(20px);opacity:0}to{transform:none;opacity:1}}
+.modal-icon{font-size:3.5rem;margin-bottom:1rem}
+.modal-title{font-family:var(--font-heading);font-size:1.8rem;color:var(--dark);margin-bottom:0.75rem}
+.modal-sub{color:var(--muted);font-size:1rem;line-height:1.6;margin-bottom:2rem}
+.modal-close{
+  background:linear-gradient(135deg,var(--rose),#B83568);color:white;
+  border:none;border-radius:99px;padding:14px 36px;cursor:pointer;
+  font-family:var(--font-body);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;
+  transition:all 0.3s;
+}
+.modal-close:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,84,126,0.4)}
+
+/* ══════════ ANIMATIONS ══════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════ GALLERY IMAGES (CSS gradients as fallback placeholders) ══════════ */
+.gal-p1{background:linear-gradient(135deg,#F4A7B9,#D4547E)}
+.gal-p2{background:linear-gradient(135deg,#EDE0F8,#9B50C0)}
+.gal-p3{background:linear-gradient(135deg,#F5E6D8,#C9A84C)}
+.gal-p4{background:linear-gradient(135deg,#D4547E,#9B3060)}
+.gal-p5{background:linear-gradient(135deg,#C9A84C,#8B6010)}
+.gal-p6{background:linear-gradient(135deg,#9B50C0,#4D1575)}
+.gal-placeholder{width:100%;display:block;position:relative;overflow:hidden}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media(max-width:900px){
+  .gallery-grid{columns:2}
+  .booking-inner,.academy-inner{grid-template-columns:1fr;gap:3rem}
+  .academy-img-collage{height:360px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  nav .nav-links{display:none}
+  .hamburger{display:flex}
+  .gallery-grid{columns:1}
+  .hero-h1{font-size:2.6rem}
+  .services-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .price-card.featured{transform:none}
+  .testi-card{min-width:280px}
+  .footer-top{grid-template-columns:1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .academy-img-collage{height:280px}
+  .course-list{grid-template-columns:1fr}
+}
+
+/* ══════════ HERO IMAGE ══════════ */
+.hero{justify-content:space-between;padding-top:72px}
+.hero-right{
+  position:relative;z-index:2;flex-shrink:0;
+  width:min(480px,45vw);height:100%;
+  display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:0;
+}
+.hero-img-frame{
+  position:relative;width:100%;height:calc(100vh - 72px);
+  overflow:hidden;
+}
+.hero-img-frame img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  display:block;
+}
+.hero-img-frame::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to right,#1A0A10 0%,transparent 35%),
+             linear-gradient(to top,#1A0A10 0%,transparent 25%);
+}
+.hero-img-frame::after{
+  content:'';position:absolute;inset:0;z-index:2;
+  background:linear-gradient(160deg,rgba(201,168,76,0.08) 0%,transparent 60%);
+}
+.hero-img-badge{
+  position:absolute;bottom:3rem;left:1.5rem;z-index:5;
+  background:rgba(26,10,16,0.65);backdrop-filter:blur(16px);
+  border:1px solid rgba(201,168,76,0.4);border-radius:16px;
+  padding:0.9rem 1.4rem;min-width:160px;
+  animation:fadeUp 1s 0.6s ease both;
+  box-shadow:0 8px 32px rgba(0,0,0,0.3);
+}
+.hero-img-badge strong{
+  display:block;font-family:var(--font-heading);font-size:1.6rem;
+  color:var(--gold-light);line-height:1;margin-bottom:3px;
+}
+.hero-img-badge small{
+  font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(255,255,255,0.6);
+}
+.hero-content{padding-top:0}
+@media(max-width:900px){
+  .hero{flex-direction:column;padding-top:72px;min-height:100vh}
+  .hero-right{width:100%;height:50vh;align-items:stretch}
+  .hero-img-frame{height:100%}
+  .hero-content{padding:3rem 6vw 1rem}
+  .hero-img-badge{bottom:1.5rem;left:1rem}
+}
+@media(max-width:640px){
+  .hero-right{height:40vh}
+  .hero-img-badge{bottom:1rem;left:1rem;padding:0.6rem 1rem;min-width:120px}
+  .hero-img-badge strong{font-size:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Glow <span>&</span> Shine <div class="nav-dot"></div></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#academy">Academy</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#booking" class="nav-book">Book Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+  <a href="#academy" onclick="toggleMenu()">Academy</a>
+  <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
+  <a href="#booking" onclick="toggleMenu()" style="color:var(--gold)">Book Appointment</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="orb1 hero-orb"></div>
+  <div class="orb2 hero-orb"></div>
+  <div class="orb3 hero-orb"></div>
+  <div class="hero-content" style="padding-left:6vw;padding-top:4rem">
+    <div class="hero-badge">Gopiganj's Premier Beauty Studio</div>
+    <h1 class="hero-h1">Glow With<br/><em>Confidence.</em></h1>
+    <p class="hero-sub">Where beauty meets perfection &amp; skills become careers. Expert makeup, advanced skincare, bridal transformations, and certified beauty education — all under one roof.</p>
+    <div class="hero-ctas">
+      <a href="#booking" class="btn-primary">✦ Book Appointment</a>
+      <a href="#services" class="btn-outline">Explore Services →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-frame">
+      <img src="data:image/jpeg;base64,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" alt="Beautiful Indian bride with traditional jewellery and bridal makeup" loading="eager"/>
+      <div class="hero-img-badge">
+        <strong>500+</strong>
+        <small>Brides Beautified</small>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="fade-in">
+    <span class="stat-num" data-count="1200">0</span>
+    <div class="stat-label">Happy Brides</div>
+  </div>
+  <div class="fade-in">
+    <span class="stat-num" data-count="8">0</span>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="fade-in">
+    <span class="stat-num" data-count="500">0</span>
+    <div class="stat-label">Students Trained</div>
+  </div>
+  <div class="fade-in">
+    <span class="stat-num" data-count="15">0</span>
+    <div class="stat-label">Expert Artists</div>
+  </div>
+  <div class="fade-in">
+    <span class="stat-num" data-count="4.9">0</span>
+    <div class="stat-label">Google Rating ★</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header fade-in">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Premium <em>Beauty Services</em></h2>
+    <p class="section-sub">From everyday glow to your most special day — we bring out your best self with expert care and luxury treatments.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-img-wrap">
+        <div style="width:100%;height:200px;background:linear-gradient(135deg,#F4A7B9 0%,#D4547E 40%,#9B3060 100%);display:flex;align-items:center;justify-content:center;font-size:4rem">💄</div>
+        <div class="service-icon-wrap">🌸</div>
+      </div>
+      <div class="service-body">
+        <h3 class="service-name">Bridal Makeup</h3>
+        <p class="service-desc">Flawless HD, airbrush &amp; signature bridal looks by Priya Ma'am and our senior artists. Your dream wedding look, perfected.</p>
+        <div class="service-tags">
+          <span class="tag">HD Makeup</span><span class="tag">Airbrush</span><span class="tag">Signature Look</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-img-wrap">
+        <div style="width:100%;height:200px;background:linear-gradient(135deg,#EDE0F8 0%,#9B50C0 50%,#4D1575 100%);display:flex;align-items:center;justify-content:center;font-size:4rem">✨</div>
+        <div class="service-icon-wrap">💎</div>
+      </div>
+      <div class="service-body">
+        <h3 class="service-name">Advanced Skincare</h3>
+        <p class="service-desc">Facials, chemical peels, hydrating masks &amp; full-body treatments by certified skincare specialists for radiant, healthy skin.</p>
+        <div class="service-tags">
+          <span class="tag">Facials</span><span class="tag">Peels</span><span class="tag">Body Treatments</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-img-wrap">
+        <div style="width:100%;height:200px;background:linear-gradient(135deg,#F5E6D8 0%,#C9A84C 50%,#8B6010 100%);display:flex;align-items:center;justify-content:center;font-size:4rem">💇</div>
+        <div class="service-icon-wrap">✂️</div>
+      </div>
+      <div class="service-body">
+        <h3 class="service-name">Hair Care & Styling</h3>
+        <p class="service-desc">Expert cuts, colouring, keratin treatments, hair spas &amp; advanced texturing by our seasoned hairstylists.</p>
+        <div class="service-tags">
+          <span class="tag">Cut & Color</span><span class="tag">Keratin</span><span class="tag">Hair Spa</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-img-wrap">
+        <div style="width:100%;height:200px;background:linear-gradient(135deg,#FDE8EF 0%,#F4A7B9 50%,#D4547E 100%);display:flex;align-items:center;justify-content:center;font-size:4rem">💅</div>
+        <div class="service-icon-wrap">🌺</div>
+      </div>
+      <div class="service-body">
+        <h3 class="service-name">Nail Art & Spa</h3>
+        <p class="service-desc">Classic manicures, luxury pedicures, bomb spa treatments &amp; intricate nail art for beautifully groomed hands and feet.</p>
+        <div class="service-tags">
+          <span class="tag">Manicure</span><span class="tag">Pedicure</span><span class="tag">Nail Art</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-img-wrap">
+        <div style="width:100%;height:200px;background:linear-gradient(135deg,#9B50C0 0%,#4D1575 50%,#1A0A10 100%);display:flex;align-items:center;justify-content:center;font-size:4rem">🌿</div>
+        <div class="service-icon-wrap">🕯️</div>
+      </div>
+      <div class="service-body">
+        <h3 class="service-name">Spa & Wellness</h3>
+        <p class="service-desc">Rejuvenating skull &amp; neck massages, full-body relaxation therapies &amp; de-stress rituals for complete wellness.</p>
+        <div class="service-tags">
+          <span class="tag">Massage</span><span class="tag">Body Ritual</span><span class="tag">De-stress</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-img-wrap">
+        <div style="width:100%;height:200px;background:linear-gradient(135deg,#C9A84C 0%,#D4547E 50%,#9B3060 100%);display:flex;align-items:center;justify-content:center;font-size:4rem">🎓</div>
+        <div class="service-icon-wrap">⭐</div>
+      </div>
+      <div class="service-body">
+        <h3 class="service-name">Party & Event Makeup</h3>
+        <p class="service-desc">High-definition makeup for every occasion — from intimate gatherings to grand celebrations, tailored to every budget.</p>
+        <div class="service-tags">
+          <span class="tag">Party Makeup</span><span class="tag">HD Looks</span><span class="tag">All Budgets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-header fade-in">
+    <div class="section-label">Transparent Pricing</div>
+    <h2 class="section-title">Beauty <em>Packages</em></h2>
+    <p class="section-sub" style="margin:0 auto">Luxury within reach. Choose the package that suits your occasion and let us make you shine.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card fade-in">
+      <div class="price-tier">Essential Glow</div>
+      <h3 class="price-name">Basic Radiance</h3>
+      <div class="price-amount">
+        <span class="price-currency">₹</span>
+        <span class="price-val">1,499</span>
+      </div>
+      <p class="price-period">per session</p>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>HD Makeup by Jr. Artist</li>
+        <li>Basic Facial Treatment</li>
+        <li>Express Manicure or Pedicure</li>
+        <li>Hair Wash & Blowdry</li>
+        <li>Eyebrow Shaping</li>
+      </ul>
+      <button class="btn-book" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book This Package</button>
+    </div>
+    <div class="price-card featured fade-in">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-tier">Bridal Bliss</div>
+      <h3 class="price-name">Signature Bridal</h3>
+      <div class="price-amount">
+        <span class="price-currency" style="color:var(--gold-light)">₹</span>
+        <span class="price-val">8,999</span>
+      </div>
+      <p class="price-period">complete package</p>
+      <div class="price-divider" style="background:rgba(201,168,76,0.2)"></div>
+      <ul class="price-features">
+        <li>Signature Makeup by Priya Ma'am</li>
+        <li>Airbrush Foundation</li>
+        <li>Bridal Hair Styling</li>
+        <li>Luxury Spa Pedicure & Manicure</li>
+        <li>Advanced Bridal Facial</li>
+        <li>Saree / Lehenga Draping</li>
+        <li>Pre-bridal Skin Prep Session</li>
+      </ul>
+      <button class="btn-book" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Bridal Package</button>
+    </div>
+    <div class="price-card fade-in">
+      <div class="price-tier">Premium Care</div>
+      <h3 class="price-name">Glow Monthly</h3>
+      <div class="price-amount">
+        <span class="price-currency">₹</span>
+        <span class="price-val">3,999</span>
+      </div>
+      <p class="price-period">per month</p>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>2 Facial Treatments / Month</li>
+        <li>Unlimited Hair Washes</li>
+        <li>Monthly Nail Appointment</li>
+        <li>Senior Artist Makeup (1x)</li>
+        <li>Scalp Massage Sessions (2x)</li>
+        <li>Skincare Product Consultation</li>
+      </ul>
+      <button class="btn-book" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Subscribe & Save</button>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header fade-in">
+    <div class="section-label">Our Work</div>
+    <h2 class="section-title">Beauty <em>Gallery</em></h2>
+    <p class="section-sub" style="margin:0 auto">Every look tells a story. Explore our portfolio of transformations that celebrate beauty in every form.</p>
+  </div>
+  <div class="gallery-grid fade-in">
+    <div class="gallery-item">
+      <div style="height:280px;background:linear-gradient(160deg,#F4A7B9,#D4547E,#9B3060);display:flex;align-items:center;justify-content:center;font-size:5rem">💄</div>
+      <div class="gallery-overlay"><span>Bridal HD Makeup</span></div>
+    </div>
+    <div class="gallery-item">
+      <div style="height:200px;background:linear-gradient(160deg,#EDE0F8,#9B50C0);display:flex;align-items:center;justify-content:center;font-size:4rem">💅</div>
+      <div class="gallery-overlay"><span>Nail Art Design</span></div>
+    </div>
+    <div class="gallery-item">
+      <div style="height:320px;background:linear-gradient(160deg,#C9A84C,#8B6010,#3D1030);display:flex;align-items:center;justify-content:center;font-size:5rem">👰</div>
+      <div class="gallery-overlay"><span>Traditional Bridal</span></div>
+    </div>
+    <div class="gallery-item">
+      <div style="height:240px;background:linear-gradient(160deg,#F5E6D8,#C9A84C,#D4547E);display:flex;align-items:center;justify-content:center;font-size:4.5rem">✨</div>
+      <div class="gallery-overlay"><span>Party Glam Makeup</span></div>
+    </div>
+    <div class="gallery-item">
+      <div style="height:180px;background:linear-gradient(160deg,#9B3060,#4D1575);display:flex;align-items:center;justify-content:center;font-size:4rem">💇</div>
+      <div class="gallery-overlay"><span>Hair Colour & Styling</span></div>
+    </div>
+    <div class="gallery-item">
+      <div style="height:260px;background:linear-gradient(160deg,#FDE8EF,#F4A7B9,#9B50C0);display:flex;align-items:center;justify-content:center;font-size:5rem">🌸</div>
+      <div class="gallery-overlay"><span>Skincare Facial Glow</span></div>
+    </div>
+    <div class="gallery-item">
+      <div style="height:210px;background:linear-gradient(160deg,#6B2050,#C9A84C);display:flex;align-items:center;justify-content:center;font-size:4rem">🪮</div>
+      <div class="gallery-overlay"><span>Keratin Treatment</span></div>
+    </div>
+    <div class="gallery-item">
+      <div style="height:290px;background:linear-gradient(160deg,#D4547E,#C9A84C,#F4A7B9);display:flex;align-items:center;justify-content:center;font-size:5rem">🎨</div>
+      <div class="gallery-overlay"><span>Airbrush Bridal Look</span></div>
+    </div>
+    <div class="gallery-item">
+      <div style="height:170px;background:linear-gradient(160deg,#4D1575,#9B50C0,#EDE0F8);display:flex;align-items:center;justify-content:center;font-size:4rem">🌿</div>
+      <div class="gallery-overlay"><span>Spa & Wellness</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-header fade-in">
+    <div class="section-label">Client Love</div>
+    <h2 class="section-title">What Our <em>Brides Say</em></h2>
+    <p class="section-sub" style="margin:0 auto">Real stories from real women whose lives — and looks — we've touched.</p>
+  </div>
+  <div class="testi-track fade-in" id="testiTrack">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Priya Ma'am made me look absolutely stunning on my wedding day. The airbrush makeup lasted all 12 hours without a touch-up. I felt like a queen!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AN</div>
+        <div>
+          <div class="testi-name">Anjali Narayan</div>
+          <div class="testi-service">Signature Bridal Makeup</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The skincare course at Glow & Shine completely transformed my career. Small batches, personal attention, and international certification — worth every penny!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">PS</div>
+        <div>
+          <div class="testi-name">Pooja Shukla</div>
+          <div class="testi-service">Skincare Academy Course</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"My pre-bridal sessions here gave me the most glowing skin I've ever had. The luxury spa pedicure is now my monthly guilty pleasure. Highly recommend!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">RM</div>
+        <div>
+          <div class="testi-name">Riya Mishra</div>
+          <div class="testi-service">Monthly Glow Package</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Couldn't believe how affordable HD bridal makeup could be! The Sr. Artist did an incredible job — all my wedding photos are magazine-worthy. Thank you!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">SK</div>
+        <div>
+          <div class="testi-name">Sunita Kashyap</div>
+          <div class="testi-service">HD Bridal Package</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I did the Complete Makeup Artistry Course here and got placed within two months of graduating. The hands-on training is exceptional and the faculty is world-class!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">VT</div>
+        <div>
+          <div class="testi-name">Vaishnavi Tripathi</div>
+          <div class="testi-service">Complete Makeup Artistry</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="testi-nav">
+    <button class="testi-dot active" onclick="scrollTesti(0)"></button>
+    <button class="testi-dot" onclick="scrollTesti(1)"></button>
+    <button class="testi-dot" onclick="scrollTesti(2)"></button>
+    <button class="testi-dot" onclick="scrollTesti(3)"></button>
+    <button class="testi-dot" onclick="scrollTesti(4)"></button>
+  </div>
+</section>
+
+<!-- ACADEMY -->
+<section class="academy" id="academy">
+  <div class="academy-inner">
+    <div class="academy-img-collage fade-in">
+      <div class="collage-main">
+        <div style="width:100%;height:100%;background:linear-gradient(160deg,#9B3060,#3D1030,#C9A84C);display:flex;align-items:center;justify-content:center;font-size:6rem">🎓</div>
+      </div>
+      <div class="collage-secondary">
+        <div style="width:100%;height:100%;background:linear-gradient(160deg,#EDE0F8,#9B50C0,#F4A7B9);display:flex;align-items:center;justify-content:center;font-size:4rem">💄</div>
+      </div>
+      <div class="collage-badge">
+        <strong>10+</strong>
+        <small>Certified Courses</small>
+      </div>
+    </div>
+    <div class="fade-in">
+      <div class="section-label">Beauty Academy</div>
+      <h2 class="section-title">Turn Your Passion<br/>Into a <em>Career</em></h2>
+      <p class="section-sub">Glow & Shine is the best makeup academy in Gopiganj — offering expert-led, internationally certified courses with small batch sizes for personalised learning.</p>
+      <div class="course-list">
+        <div class="course-item">Basic Makeup Course</div>
+        <div class="course-item">Advance Makeup</div>
+        <div class="course-item">Skin & Hair (Short)</div>
+        <div class="course-item">Skin & Hair (Long)</div>
+        <div class="course-item">Hairstyling — Basic</div>
+        <div class="course-item">Hairstyling — Advance</div>
+        <div class="course-item">Personality Development</div>
+        <div class="course-item">Complete Beautician</div>
+        <div class="course-item">Hair Technician</div>
+        <div class="course-item">Makeup Artistry</div>
+      </div>
+      <a href="#booking" class="btn-primary" style="display:inline-flex;margin-top:0.5rem">Enquire About Courses ✦</a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="booking-inner">
+    <div class="booking-left">
+      <div class="section-label">Book a Session</div>
+      <h2 class="section-title">Reserve Your<br/><em>Beauty Moment</em></h2>
+      <p class="section-sub">Walk in glowing, walk out transformed. Fill the form and we'll confirm your appointment within 2 hours.</p>
+      <div class="booking-perks">
+        <div class="perk"><div class="perk-icon">📍</div> Gopiganj, Uttar Pradesh</div>
+        <div class="perk"><div class="perk-icon">📞</div> Call / WhatsApp for instant booking</div>
+        <div class="perk"><div class="perk-icon">⏰</div> Open Mon – Sun, 9:00 AM – 8:00 PM</div>
+        <div class="perk"><div class="perk-icon">✦</div> Complimentary skin consultation with bridal package</div>
+      </div>
+    </div>
+    <div class="booking-form fade-in">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="e.g. Anjali Singh" id="fname"/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+91 9XXXXXXXXX" id="fphone"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="your@email.com" id="femail"/>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Select Service</label>
+          <select id="fservice">
+            <option value="">Choose a service…</option>
+            <option>Bridal Makeup — Signature</option>
+            <option>Bridal Makeup — HD</option>
+            <option>Bridal Makeup — Airbrush</option>
+            <option>Party / Event Makeup</option>
+            <option>Facial & Skincare</option>
+            <option>Hair Care & Styling</option>
+            <option>Manicure & Pedicure</option>
+            <option>Spa & Massage</option>
+            <option>Academy Enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Date</label>
+          <input type="date" id="fdate"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Message (optional)</label>
+        <textarea placeholder="Tell us about your occasion, any specific look you want…" id="fmsg"></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitBooking()">
+        Confirm Appointment ✦
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">Glow <span>&</span> Shine</a>
+      <p>Where Beauty Meets Perfection &amp; Skills Become Careers. Gopiganj's most trusted beauty parlour, makeup studio &amp; beauty academy.</p>
+      <div class="social-links">
+        <a href="#" class="social-btn" aria-label="Instagram">&#9825;</a>
+        <a href="#" class="social-btn" aria-label="Facebook">f</a>
+        <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+        <a href="#" class="social-btn" aria-label="WhatsApp">✉</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="#services">Bridal Makeup</a></li>
+        <li><a href="#services">Skincare & Facials</a></li>
+        <li><a href="#services">Hair Care & Styling</a></li>
+        <li><a href="#services">Nail Art & Spa</a></li>
+        <li><a href="#services">Wellness & Massage</a></li>
+        <li><a href="#academy">Beauty Academy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Opening Hours</h4>
+      <div class="hours-row"><span>Monday – Friday</span><span>9AM – 8PM</span></div>
+      <div class="hours-row"><span>Saturday</span><span>9AM – 9PM</span></div>
+      <div class="hours-row"><span>Sunday</span><span>10AM – 6PM</span></div>
+      <br/>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+91">📞 Call for Appointment</a></li>
+        <li><a href="#">📍 Gopiganj, Bhadohi, UP</a></li>
+        <li><a href="mailto:glowshine@gmail.com">✉ glowshine@gmail.com</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p style="font-size:0.82rem;margin-bottom:0.75rem;line-height:1.6">Get beauty tips, offers &amp; course announcements in your inbox.</p>
+      <div class="newsletter">
+        <input type="email" placeholder="Your email…"/>
+        <button>Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Glow &amp; Shine Beauty Parlour, Gopiganj. All rights reserved.</span>
+    <span><a href="#">Privacy Policy</a> · <a href="#">Terms</a> · Made with ♥ for beauty</span>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I'd%20like%20to%20book%20an%20appointment%20at%20Glow%20%26%20Shine" class="floating-wa" target="_blank" aria-label="WhatsApp Booking">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.784.464 3.558 1.348 5.121L2.045 22l4.979-1.291A9.942 9.942 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.181a8.142 8.142 0 01-4.154-1.138l-.298-.177-3.083.8.824-3.002-.194-.309A8.176 8.176 0 013.818 12c0-4.511 3.67-8.181 8.181-8.181 4.511 0 8.182 3.67 8.182 8.181 0 4.511-3.671 8.181-8.182 8.181z"/></svg>
+</a>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <div class="modal-icon">✨</div>
+    <h3 class="modal-title">Appointment Confirmed!</h3>
+    <p class="modal-sub">Thank you! Your booking request has been received. Our team will WhatsApp you within 2 hours to confirm your appointment at Glow &amp; Shine.</p>
+    <button class="modal-close" onclick="closeModal()">Perfect, Thank You!</button>
+  </div>
+</div>
+
+<script>
+// NAV SCROLL
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// MOBILE MENU
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// INTERSECTION OBSERVER
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});
+},{threshold:0.12});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// COUNTER ANIMATION
+function animateCounter(el){
+  const target=parseFloat(el.dataset.count);
+  const isDecimal=target%1!==0;
+  const duration=2000;
+  const steps=80;
+  const increment=target/steps;
+  let current=0;
+  const interval=setInterval(()=>{
+    current=Math.min(current+increment,target);
+    el.textContent=isDecimal?current.toFixed(1):Math.floor(current)+(target>=1000?'+':'');
+    if(current>=target){
+      el.textContent=isDecimal?target.toFixed(1):target+(target>=100?'+':'');
+      clearInterval(interval);
+    }
+  },duration/steps);
+}
+const counterObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.stat-num').forEach(el=>animateCounter(el));
+      counterObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelector('.stats-strip')&&counterObs.observe(document.querySelector('.stats-strip'));
+
+// TESTIMONIALS SCROLL
+function scrollTesti(i){
+  const track=document.getElementById('testiTrack');
+  const cards=track.querySelectorAll('.testi-card');
+  if(!cards[i])return;
+  track.scrollTo({left:cards[i].offsetLeft-24,behavior:'smooth'});
+  document.querySelectorAll('.testi-dot').forEach((d,idx)=>d.classList.toggle('active',idx===i));
+}
+
+// TESTIMONIALS AUTO SLIDE
+let testiIdx=0;
+let testiInterval=setInterval(()=>{
+  testiIdx=(testiIdx+1)%5;
+  scrollTesti(testiIdx);
+},4000);
+document.getElementById('testiTrack').addEventListener('mouseenter',()=>clearInterval(testiInterval));
+document.getElementById('testiTrack').addEventListener('mouseleave',()=>{
+  testiInterval=setInterval(()=>{testiIdx=(testiIdx+1)%5;scrollTesti(testiIdx);},4000);
+});
+
+// BOOKING FORM
+function submitBooking(){
+  const name=document.getElementById('fname').value.trim();
+  const phone=document.getElementById('fphone').value.trim();
+  const service=document.getElementById('fservice').value;
+  if(!name){alert('Please enter your name.');return;}
+  if(!phone){alert('Please enter your phone number.');return;}
+  if(!service){alert('Please select a service.');return;}
+  document.getElementById('bookingModal').classList.add('open');
+}
+function closeModal(){
+  document.getElementById('bookingModal').classList.remove('open');
+  ['fname','fphone','femail','fmsg'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fservice').value='';
+  document.getElementById('fdate').value='';
+}
+document.getElementById('bookingModal').addEventListener('click',function(e){
+  if(e.target===this)closeModal();
+});
+</script>
+</body>
+</html>
