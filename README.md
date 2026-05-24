@@ -37,3 +37,19 @@ npm run start
 ```
 
 For static export, add `output: 'export'` to `next.config.ts` if your host only serves static files.
+
+## Deploy on Vercel
+
+This is a **Next.js** app. Vercel must use the Next.js preset (not a static site).
+
+1. **Project Settings → General → Framework Preset:** `Next.js`
+2. **Project Settings → Build & Development Settings:**
+   - **Build Command:** `npm run build` (or leave default)
+   - **Output Directory:** leave **empty** (do not set `public` or `out`)
+   - **Install Command:** `npm install`
+3. **Root Directory:** leave empty (repo root)
+4. Push to GitHub, then **Redeploy** from the Vercel dashboard
+
+If you see `404: NOT_FOUND` with a Vercel error box, the output directory is usually wrong — clear it and redeploy.
+
+Custom domain `sonypalour.com` should point to this Vercel project under **Settings → Domains**.
