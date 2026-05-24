@@ -5,6 +5,28 @@
   z-index: 1;
 }
 
+.embedded {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.embeddedInner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.embeddedInner .card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.embeddedInner .form {
+  flex: 1;
+}
+
 .wrapper {
   max-width: 560px;
   margin: 0 auto;

@@ -56,7 +56,7 @@ export default function Navbar() {
             {link.label}
           </a>
         ))}
-        <a href="#booking" onClick={closeMenu} style={{ color: "var(--gold)" }}>
+        <a href="#booking" onClick={closeMenu} className="mobile-menu-book">
           Book Appointment
         </a>
       </div>

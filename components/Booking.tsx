@@ -39,7 +39,7 @@ function formatDate(dateStr: string) {
   return `${m}/${d}/${y}`;
 }
 
-export default function Booking() {
+export default function Booking({ embedded = false }: { embedded?: boolean }) {
   const [form, setForm] = useState({
     service: bookingServices[0] as string,
     branch: "",
@@ -95,8 +95,8 @@ export default function Booking() {
   };
 
   return (
-    <section className={styles.section} id="booking">
-      <div className={`${styles.wrapper} fade-in`}>
+    <div className={embedded ? styles.embedded : styles.section} id={embedded ? undefined : "booking"}>
+      <div className={embedded ? styles.embeddedInner : `${styles.wrapper} fade-in`}>
         <div className={styles.card}>
           <header className={styles.header}>
             <div className={styles.titleRow}>
@@ -272,7 +272,7 @@ export default function Booking() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

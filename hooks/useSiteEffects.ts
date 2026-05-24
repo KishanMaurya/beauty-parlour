@@ -5,9 +5,12 @@ import { useEffect } from "react";
 export function useNavScroll() {
   useEffect(() => {
     const onScroll = () => {
-      document.getElementById("nav")?.classList.toggle("scrolled", window.scrollY > 50);
+      const nav = document.getElementById("nav");
+      if (!nav) return;
+      nav.classList.toggle("scrolled", window.scrollY > 40);
     };
-    window.addEventListener("scroll", onScroll);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 }

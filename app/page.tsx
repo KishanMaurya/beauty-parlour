@@ -7,8 +7,7 @@ import Pricing from "@/components/Pricing";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
 import Academy from "@/components/Academy";
-import Booking from "@/components/Booking";
-import MapSection from "@/components/MapSection";
+import BookingMapSection from "@/components/BookingMapSection";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import ClientEffects from "@/components/ClientEffects";
@@ -26,8 +25,7 @@ export default function Home() {
       <Gallery />
       <Testimonials />
       <Academy />
-      <Booking />
-      <MapSection />
+      <BookingMapSection />
       <Footer />
       <FloatingWhatsApp />
     </>
